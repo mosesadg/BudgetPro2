@@ -1,0 +1,48 @@
+﻿@using BudgetPro2.Models
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HouseholdUsers</title>
+</head>
+<body>
+
+
+    <div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="example">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+
+
+
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr class="gradeX">
+
+                            <td> @user.DisplayName</td>
+                            <td> @user.Email</td>
+                            <td>
+
+
+
+                                @*@Html.ActionLink("Edit Users", "EditUser", new { Id = user.Id }, new { @class = "btn btn-primary btn-large" })*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+</html>

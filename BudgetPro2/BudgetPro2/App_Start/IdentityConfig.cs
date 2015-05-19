@@ -11,6 +11,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BudgetPro2.Models;
+using System.Net;
+using SendGrid;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace BudgetPro2
 {
@@ -18,7 +22,38 @@ namespace BudgetPro2
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
+
+            
+
+        //    // Plug in your email service here to send an email.
+
+            //double check if this code is needed
+          var username = ConfigurationManager.AppSettings["SendGridUserName"];
+          var password = ConfigurationManager.AppSettings["SendGridPassword"];
+          var from = ConfigurationManager.AppSettings["ContactEmail"];
+          
+            
+          //  var username = "amoses2015";
+          //var pswd = "Coderfoundry2015";
+          //var credentials = new NetworkCredential(username, pswd);
+
+          SendGridMessage myMessage = new SendGridMessage();
+           myMessage.AddTo(message.Destination);
+           myMessage.From = new MailAddress(from);
+           myMessage.Subject = message.Subject;
+           myMessage.Text = message.Body;
+           myMessage.Html = message.Body;
+
+
+           var credentials = new NetworkCredential(username, password);
+
+           var transportWeb = new Web(credentials);
+
+           transportWeb.DeliverAsync(myMessage);
+
+           //Instantiate new EmailService Object
+           //new EmailService().SendAsync(new IdentityMessage {Destination ="moses.adg@gmail.com", Subject ="Test Email", Body =" Test Body"});
+            
             return Task.FromResult(0);
         }
     }

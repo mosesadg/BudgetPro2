@@ -23,12 +23,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Households", "Index", "Households")</li>
+                    
+                   
+                    
                     <li>@Html.ActionLink("Account Mgmt", "Index", "Accounts")</li>
                     <li>@Html.ActionLink("Set Budget", "Index", "BudgetItems")</li>
                     <li>@Html.ActionLink("Categories", "Index", "BudgetItems")</li>
                     <li>@Html.ActionLink("Invite Users", "Index", "Home")</li>
 
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin-Households", "Index", "Households")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

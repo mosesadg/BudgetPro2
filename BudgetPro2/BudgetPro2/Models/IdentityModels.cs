@@ -13,6 +13,7 @@ namespace BudgetPro2.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DisplayName { get; set; }
+
         
 
 

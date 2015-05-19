@@ -1,21 +1,17 @@
 ﻿@model BudgetPro2.Models.Household
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Household-Details</title>
 </head>
 <body>
     <div>
-        <h4>Household</h4>
+        <h3><b>@Html.DisplayFor(model => model.Name) Family Household</b></h3>
         <hr />
-        <dl class="dl-horizontal">
+        @*<dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
@@ -24,8 +20,91 @@
                 @Html.DisplayFor(model => model.Name)
             </dd>
     
-        </dl>
+        </dl>*@
     </div>
+    
+    <table class="table">
+        <tr>
+            <th>
+                Members
+                @*@Html.DisplayNameFor(model => model.Name)*@
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.User)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Accounts
+                @*@Html.DisplayNameFor(model => model.Name)*@
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Account)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <table class="table">
+        <tr>
+            <th>
+                <h4><b>Invite</b></h4>
+                Invite another user to join your Household
+                
+                <form action="">
+                    </br>
+                    E-mail:
+                    <input type="email" name="email">
+                    <input type="submit" value="Send Invitation">
+                </form>
+            </th>
+            <th></th>
+        </tr>
+
+        
+
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>
+                <h4><b>Leave</b></h4>
+                Leave your current household and start a new one
+
+                <form action="">        
+                        </br>
+                    <input type="checkbox" name="" value="">I understand that I will no longer have access to my current household's accounts.
+                    </br>
+                    </br>
+                        <input type="submit" value="Leave this household.">    
+                        
+                </form>
+            </th>
+            <th></th>
+        </tr>
+
+
+
+    </table>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
