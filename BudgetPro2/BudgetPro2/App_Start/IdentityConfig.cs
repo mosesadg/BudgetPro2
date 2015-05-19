@@ -23,9 +23,7 @@ namespace BudgetPro2
         public Task SendAsync(IdentityMessage message)
         {
 
-            
-
-        //    // Plug in your email service here to send an email.
+           // Plug in your email service here to send an email.
 
             //double check if this code is needed
           var username = ConfigurationManager.AppSettings["SendGridUserName"];
