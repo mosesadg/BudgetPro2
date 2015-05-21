@@ -8,6 +8,11 @@ namespace BudgetPro2.Models
 {
     public class Account
     {
+        //public Account()
+        //{
+        //    this.Transactions = new HashSet<Transactions>();
+        //}
+
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -18,7 +23,11 @@ namespace BudgetPro2.Models
 
 
         public virtual Household Household { get; set; }
+
         public virtual ICollection<Transactions> Transactions { get; set; }
 
+			
+
     }
+
 }

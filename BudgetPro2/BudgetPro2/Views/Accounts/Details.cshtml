@@ -1,7 +1,6 @@
 ﻿@model BudgetPro2.Models.Account
 
 
-
 <!DOCTYPE html>
 
 <html>
@@ -36,5 +35,100 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4" @*style="background-color:lavender;*@">
+
+                <form method="post" action="@Url.Action("CreateTransaction")">
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("AccountId", Model.Id)
+                            @Html.TextArea("Date", "", new { @class = "form-control", placeholder = "Date" })
+                            @Html.TextArea("Amount", "", new { @class = "form-control", placeholder = "Enter Amount" })
+                            @Html.TextArea("Category", "", new { @class = "form-control", placeholder = "Category" })
+                            @Html.TextArea("Description", "", new { @class = "form-control", placeholder = "Description" })
+                            @Html.TextArea("Reconciled", "", new { @class = "form-control", placeholder = "Reconciled" })
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" style="border: 4pt ridge lightgrey" value="CreateTransaction" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="col-sm-8" @*style="background-color:lavenderblush;*@">
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            Date
+                            @*@Html.DisplayNameFor(model => model.Name)*@
+                        </th>
+                        <th>
+                            Amount
+
+                            @*@Html.DisplayNameFor(model => model.Balance)*@
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Reconciled
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var transaction in Model.Transactions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.Amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.BudgetCategory)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.ReconciledAmount)
+                            </td>
+                            <td>
+                                @Html.ActionLink("EditTransaction", "EditTransaction", new { id = transaction.Id })
+
+                            </td>
+                        </tr>
+                    }
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 </body>
 </html>

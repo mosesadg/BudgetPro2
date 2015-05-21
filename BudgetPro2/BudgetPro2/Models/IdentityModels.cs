@@ -12,11 +12,10 @@ namespace BudgetPro2.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        // comment below out
         public string DisplayName { get; set; }
 
-        
-
-
+        // comment below out
         public virtual ICollection<Household> Households { get; set; }
 
         public ApplicationUser()
@@ -51,6 +50,7 @@ namespace BudgetPro2.Models
         public DbSet<Account> Accounts { get; set; }
         public DbSet<BudgetItem> BudgetItems { get; set; }
         public DbSet<BudgetCategory> BudgetCategory { get; set; }
+        public DbSet<ContactEmail> ContactEmail { get; set; }
 
     }
 }

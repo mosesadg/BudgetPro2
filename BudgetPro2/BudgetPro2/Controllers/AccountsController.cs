@@ -124,5 +124,79 @@ namespace BudgetPro2.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateTransaction([Bind(Include = "Id, AccountId, Amount, Description")] Transactions Transaction)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //comment.AuthorID = User.Identity.GetUserId();
+                //comment.Created = System.DateTimeOffset.Now;
+
+                db.Transactions.Add(Transaction);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            return View();
+        }
+
+
+        
+        public ActionResult EditTransaction(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Transactions transaction = db.Transactions.Find(id);
+            if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            return View(transaction);
+        }
+
+        // POST: Posts/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditTransaction([Bind(Include = "Id, AccountID, Amount")] Transactions transaction)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //New Code
+                db.Transactions.Attach(transaction);
+                //transaction.Updated = System.DateTimeOffset.Now;
+
+                db.Entry(transaction).Property(c => c.Amount).IsModified = true;
+                //db.Entry(transaction).Property(c => c.Updated).IsModified = true;
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+                //db.Entry(transaction).Property(c => c.Amount).IsModified = true;
+
+            }
+            return View(transaction);
+        }
+
+      
+
+
+        
+    
     }
-}
+
+
+
+    
+    
+    }
+

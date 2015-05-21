@@ -9,6 +9,8 @@ namespace BudgetPro2.Models
     public class Transactions
     {
         public int Id { get; set; }
+        public int AccountId { get; set; }
+
         public string Description { get; set; }
         public bool Type { get; set; }//check if needed , type exists in budgetitem
         public DateTimeOffset Date { get; set; }
@@ -25,4 +27,6 @@ namespace BudgetPro2.Models
         //public virtual Household Household { get; set; }
 
     }
+
+
 }

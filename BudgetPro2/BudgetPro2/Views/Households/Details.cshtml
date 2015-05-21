@@ -70,13 +70,16 @@
                 <h4><b>Invite</b></h4>
                 Invite another user to join your Household
                 
-                <form action="">
-                    </br>
-                    E-mail:
-                    <input type="email" name="email">
-                    <input type="submit" value="Send Invitation">
-                </form>
-            </th>
+                @using (Html.BeginForm()) {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="email" name="email">
+                        <input type="submit" value="InviteUser" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+               </th>
             <th></th>
         </tr>
 
@@ -92,7 +95,7 @@
 
                 <form action="">        
                         </br>
-                    <input type="checkbox" name="" value="">I understand that I will no longer have access to my current household's accounts.
+    <input type="checkbox" name="" value="I understand that I will no longer have access to my current household's accounts."
                     </br>
                     </br>
                         <input type="submit" value="Leave this household.">    
